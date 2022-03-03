@@ -1,0 +1,10 @@
+flask
+PyMySQL
+flask_restful
+flask-sqlalchemy
+flask_migrate
+flask_marshmallow
+flask-cors
+marshmallow-sqlalchemy
+pytest
+coverage

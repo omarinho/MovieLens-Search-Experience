@@ -1,0 +1,38 @@
+.wrap {
+	padding: 20px;
+	margin-bottom: 100px;
+}
+
+.resultsTable {
+	width: 100%;
+	margin-top: 30px;
+}
+
+.resultsTd {
+	padding: 10px;
+	min-width: 50px;
+	max-width: 16%;
+	background-color: #f8f4f4;
+	border-top: 1px #000000 solid;
+	border-bottom: 1px #000000 solid;
+}
+
+.resultsTdShort {
+	padding: 10px;
+	min-width: 50px;
+	max-width: 50px;
+	background-color: #f8f4f4;
+	border-top: 1px #000000 solid;
+	border-bottom: 1px #000000 solid;
+}
+
+.textCenter {
+	text-align: center;
+}
+
+.resultsTh {
+	padding: 10px;
+	color: #FFFFFF;
+	background-color: #0d6efd;	
+}
+
