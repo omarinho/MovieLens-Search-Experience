@@ -157,4 +157,3 @@ class Movie(db.Model, BaseModelMixin):
         return f'Movie({self.title})'
     def __str__(self):
         return f'{self.title}'
-
