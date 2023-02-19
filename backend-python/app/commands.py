@@ -1,15 +1,23 @@
-import os, csv, click
+import os
+import csv
+import click
 from flask import Blueprint
+
 from .movies.models import Genre, Link, Movie, Rating, Tag
 
 moviesdb = Blueprint('moviesdb', __name__)
 
+
 @moviesdb.cli.command('create_tables')
 def moviesDBCreate():
     if os.path.exists('./migrations'):
-        print("=======================================================================================================================")
-        print("ERROR: YOU NEED TO DELETE 'migrations/' FOLDER IN 'backend-python/'. ALSO MAKE SURE DATABASE IS EMPTY (WITHOUT TABLES).")
-        print("=======================================================================================================================")
+        print("============================================================="
+              "========================================================"
+              "ERROR: YOU NEED TO DELETE 'migrations/' FOLDER IN  "
+              "'backend-python/'. ALSO MAKE SURE DATABASE IS EMPTY (WITHOUT "
+              "TABLES).")
+        print("=============================================================="
+              "=========================================================")
     else:
         os.system("flask db init")
         os.system("flask db migrate -m 'Updating tables structure'")
@@ -18,8 +26,9 @@ def moviesDBCreate():
         print("FINISHED")
         print("========")
 
+
 @moviesdb.cli.command('create_tables_testing')
-def moviesDBCreate():
+def moviesDBCreateTesting():
     if os.path.exists('./migrations_testing'):
         print("===========================================================")
         print("SKIPPING TABLES CREATION BECAUSE MIGRATIONS EXIST  ALREADY.")
@@ -31,6 +40,7 @@ def moviesDBCreate():
         print("========")
         print("FINISHED")
         print("========")
+
 
 @moviesdb.cli.command('upgrade_tables')
 def moviesDBUpgrade():
@@ -78,7 +88,7 @@ def moviesDBLoading(mode=''):
         print("============================")
         with open('./csv/movies' + fileSuffix + '.csv') as csv_file:
             csv_reader = csv.reader(csv_file, delimiter=',')
-            line_count = 0            
+            line_count = 0
             for row in csv_reader:
                 if line_count == 0:
                     print(f'Column names are {", ".join(row)}')
@@ -99,7 +109,7 @@ def moviesDBLoading(mode=''):
                             genre = rec[0]
                         genre.movies.append(movie)
                         genre.save()
-                    line_count += 1                
+                    line_count += 1
             print(f'Processed {line_count} lines.')
 
         print("================")
@@ -107,7 +117,7 @@ def moviesDBLoading(mode=''):
         print("================")
         with open('./csv/links' + fileSuffix + '.csv') as csv_file:
             csv_reader = csv.reader(csv_file, delimiter=',')
-            line_count = 0            
+            line_count = 0
             for row in csv_reader:
                 if line_count == 0:
                     print(f'Column names are {", ".join(row)}')
@@ -120,7 +130,7 @@ def moviesDBLoading(mode=''):
                         tmdb_id=row[2]
                     )
                     link.save()
-                    line_count += 1                
+                    line_count += 1
             print(f'Processed {line_count} lines.')
 
         print("==================")
@@ -128,7 +138,7 @@ def moviesDBLoading(mode=''):
         print("==================")
         with open('./csv/ratings' + fileSuffix + '.csv') as csv_file:
             csv_reader = csv.reader(csv_file, delimiter=',')
-            line_count = 0            
+            line_count = 0
             for row in csv_reader:
                 if line_count == 0:
                     print(f'Column names are {", ".join(row)}')
@@ -142,7 +152,7 @@ def moviesDBLoading(mode=''):
                         timestamp=row[3]
                     )
                     rating.save()
-                    line_count += 1                
+                    line_count += 1
             print(f'Processed {line_count} lines.')
 
         print("===============")
@@ -150,7 +160,7 @@ def moviesDBLoading(mode=''):
         print("===============")
         with open('./csv/tags' + fileSuffix + '.csv') as csv_file:
             csv_reader = csv.reader(csv_file, delimiter=',')
-            line_count = 0            
+            line_count = 0
             for row in csv_reader:
                 if line_count == 0:
                     print(f'Column names are {", ".join(row)}')
@@ -164,9 +174,8 @@ def moviesDBLoading(mode=''):
                         timestamp=row[3]
                     )
                     tag.save()
-                    line_count += 1                
+                    line_count += 1
             print(f'Processed {line_count} lines.')
-
 
         print("========================")
         print("========================")
